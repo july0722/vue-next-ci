@@ -1,5 +1,5 @@
-console.log('demo')
+import routes from '@/router/routes'
 
-export default (app) => {
-  console.log(app)
+export default (app, router) => {
+  routes.forEach((route) => router.addRoute(route))
 }

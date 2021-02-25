@@ -2,8 +2,8 @@
 
 ## Project setup
 ```
-yarn install
 cd web
+yarn install
 ```
 
 ### Compiles and hot-reloads for development

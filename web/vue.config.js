@@ -1,6 +1,7 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { resolve, env } = require('./ci/utils')
+const RouterWebpackPlugin = require('./ci/plugins/router.webpack.plugin')
 const PreloadWebpackPlugin = require('./ci/plugins/preload.webpack.plugin')
 const merge = require('webpack-merge')
 const isProduction = process.env.NODE_ENV === 'production'
@@ -33,7 +34,7 @@ module.exports = merge(
         }
       }
     },
-    lintOnSave: false,
+    lintOnSave: true,
     productionSourceMap: false,
     devServer: {
       port: 9097
@@ -93,6 +94,7 @@ module.exports = merge(
       //       minRatio: 0.8
       //     })
       //   )
+      config.plugins.push(new RouterWebpackPlugin({ project: code }))
     }
   },
   isCommon ? {} : require(resolve(`../${code}/vue.config`))
