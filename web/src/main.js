@@ -24,6 +24,24 @@ try {
   console.log(e)
 }
 
+try {
+  const apiCtx = require.context('@/api', false, /\.js$/)
+  const $api = {}
+  apiCtx.keys().forEach(
+    file =>
+      ($api[
+        file
+          .split('/')
+          .pop()
+          .replace(/\.\w+$/, '')
+          .replace(/-(\w)/g, (a, c) => c.toUpperCase())
+      ] = apiCtx(file))
+  )
+  app.config.globalProperties.$api = $api
+} catch (e) {
+  console.log(e)
+}
+
 app
   .use(store)
   .use(router)

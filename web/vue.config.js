@@ -30,7 +30,7 @@ module.exports = merge(
     css: {
       loaderOptions: {
         scss: {
-          // prependData: `@import 'common/src/assets/styles/_variables';`
+          prependData: `@import 'src/assets/styles/_variables';`
         }
       }
     },
@@ -41,7 +41,7 @@ module.exports = merge(
     },
     chainWebpack: config => {
       config.resolve.alias.set('@', resolve(`../${code}/src`))
-      config.resolve.alias.set('@common', resolve('../common'))
+      config.resolve.alias.set('@web', resolve('./src'))
       if (!isCommon && isProduction && !isTender) {
         config.plugin('html-index').tap(args => [
           {
