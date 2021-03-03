@@ -6,7 +6,7 @@ let loadingCount = 0
 let $loading
 const requests = {}
 const requestKey = (url, data, method) => `${url}${JSON.stringify(data)}${method}`
-const instance = axios.create({ withCredentials: true })
+const instance = axios.create({ baseURL: '/api', withCredentials: true })
 const hideLoading = () => {
   nextTick(() => {
     if (loadingCount <= 0) return

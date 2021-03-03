@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
 import ElementPlus from 'element-plus'
+import locale from 'element-plus/lib/locale/lang/zh-cn'
 import 'element-plus/lib/theme-chalk/index.css'
 
 const app = createApp(App)
 require('@/main').default(app, router)
+require('@web/components').default(app)
 
 try {
   const layoutCtx = require.context('@/layouts', false, /\.vue$/)
@@ -45,6 +47,6 @@ try {
 app
   .use(store)
   .use(router)
-  .use(ElementPlus)
+  .use(ElementPlus, { locale })
   .mount('#app')
 sync(store, router)
